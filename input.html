@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <title>First</title>
+    </head>
+    <body>
+        <div>注册</div>
+        <form action="register.php" method="post">
+            <div>
+                <span>用户名</span><input name="name" type="text" value=""/>
+            </div>
+            <div>
+                <span>密码</span><input name="passw" type="password" value="" />
+            </div>
+            <div>
+                <span>性别</span>
+                <span>
+                    <input name="gender" type="radio" value="male" checked />男
+                    <input name="gender" type="radio" value="female" />女
+                <span>
+            </div>
+            <div>
+                <span>爱好</span>
+                <span>
+                    <input type="checkbox" name="interests" value="basketball"/>篮球
+                    <input type="checkbox" name="interests" value="football"/>足球
+                <span>
+            </div>
+            <div>
+                <span>省份</span>
+                <select name="province">
+                    <option value="GZ">广州</option>
+                    <option value="SC">四川</option>
+                </select>
+            </div>
+            <div>
+                <span>自我介绍</span>
+                <textarea cols="10" rows="3"></textarea>
+            </div>
+            <input type="reset" name="重置" /><input type="submit" name="提交" />
+        </form>
+    </body>
+</html>
