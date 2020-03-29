@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <title>我的第一个网页</title>
+    </head>
+    <!--这是注释-->
+    <body>
+        <form method="POST" action="post.php?id=123"> 
+            <div>
+                名称：<input type="text" name="Username" value="amber" placeholder="请输入"/>
+            </div>
+
+            <div>
+                密码：<input type="password" name="Password"  title="至少要4个字符" value=""/>
+            </div>
+            <div>
+               年龄： <input type="text" name="Age" value=""/>
+            </div>
+
+            <div>性别：
+                <input type="radio" name="Gender" value="male"/>男
+                <input type="radio" name="Gender" value="female"/>女
+            </div>
+
+            <div>兴趣：
+                <input type="checkbox" name="Interests[]" value="game"/>游戏
+                <input type="checkbox" name="Interests[]" value="basketball"/>篮球
+                <input type="checkbox" name="Interests[]" value="boy"/>男
+                <input type="checkbox" name="Interests[]" value="girl"/>女
+            </div>
+
+            <div>省份:
+                <select name="Province">
+                    <option value="">请选择</option>
+                    <option value="CQ">重庆</option>
+                    <option value="SC">四川</option>
+                </select>
+            </div>
+
+            <div>自我介绍：
+                <textarea name="Intro" cols="80" rows="10">我叫Amber
+                    我现在在四川
+                </textarea>
+            </div>
+            <input type="reset" value="重置" />
+            <input type="submit" name="Submit" value="提交"/>
+        </form>
+    </body>
+</html>
