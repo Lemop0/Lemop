@@ -1,0 +1,38 @@
+<html>
+    <head> 
+        <title>First page</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    </head>
+
+    <body>
+        <!--1 浏览器访问login.php
+        2 login.php setcookie("abc",123)
+        3 页面返回的头是这样的，带着一个指令 set-cookie:abc=123
+        4 浏览器接收到这些返回之后，解析头，发现有set-cookie； 创建一个文件：localhost.cookie.txt  abc=123
+        5 当用户访问localhost的其他页面register.php 有localhost.cookie.txt文件读出来，把他的内容附在 请求头的cookie
+        6 服务器发现请求头带着cookie头，解析cookie到$_COOKIE数组中,  register.php     -->
+     
+
+
+        <!--border是表边框；thead是表头；tr是table行；td是列；colspan合并该单元格-->
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>名称</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">合计:2</td>
+                </tr>
+            </tfoot>
+        </table>
+    </body>
+</html>

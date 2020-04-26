@@ -1,0 +1,43 @@
+/1 浮动 可以飘在右边，会被挤下去  float:left;
+/2 div居中  margin:0 auto;
+/3 盒模型的width占据的大小  box-sizing
+/4 层叠
+/5 继承
+/6 选择器   子元素与下级元素    直接下级与全部子集
+/7 display:table-* block  inline
+
+  //float
+  //display:block;（块元素） display:inline;（内联元素，不会引起回车，显示一排）
+  //display:table;（显示像table） display:table-cell;
+  //display:flex;（弹性排版）
+
+/8 grid 栅格系统    网格  flex/flex/table
+// 盒模型
+// position :static/absolute/relative/fixed; offset parent
+    1| static 静态。 position:static;文档流里面, top,1eft;
+    从文档流里面抽离。
+
+    2| absolute:绝对。top, left可以起作用。后面的元素会往前填充被抽出来的元素的位置。
+       relative: top,left可以起作用。 并且占住原先的位置。
+       fixed.
+
+    3| offset parent element. left top, right, bottom，设定了坐标。x,y
+    原点。(0,0)
+    默认的原点，就是<body>
+
+    4| z值  static z=0.00001; absolute,relative =0.00002
+
+    5| z-index:0;
+
+    //////////////////////////////////////
+    1  1eft(x=10) ,top(y=20) =>(0,0)
+    2  offset parent element的左上角（left,top）,右下角（right,bottom）
+    3  以position:absolute;这个元素开始往父对象查找，只要某个父级对象的position, 设置成了absolute;relative;fixed; 该父对象就是这个元素的offset parent element;
+
+    B position:absolute;relative; fixed; 
+    原点在哪，是否占据原来的位置
+
+
+
+// 选择器空格与大于符号有什么不一样的地方
+  / 直接下级子元素与所有下级子元素

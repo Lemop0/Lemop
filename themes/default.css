@@ -1,0 +1,146 @@
+*{
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-align: left;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+.container{
+    display: table;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.container>.col-1,.container>.col-2,.container>.col-3,.container>.col-4,.container>.col-5,.container>.col-6,.container>.col-7,.container>.col-8,.container>.col-9,.container>.col-10,.container>.col-11,.container>.col-12{
+    display: table-cell;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+.container>.col-1{
+    width: 8.33333%;
+}
+.container>.col-2{
+    width: 16.66667%;
+}
+.container>.col-3{
+    width: 25%;
+}
+.container>.col-4{
+    width: 33.33333%;
+}
+.container>.col-5{
+    width: 41.66667%;
+}
+.container>.col-6{
+    width: 50%;
+}
+.container>.col-7{
+    width: 58.33333%;
+}
+.container>.col-8{
+    width: 66.66667%;
+}
+.container>.col-9{
+    width: 75%;
+}
+.container>.col-10{
+    width: 83.33333%;
+}
+.container>.col-11{
+    width: 91.66667%;
+}
+.container>.col-12{
+    width: 100%;
+}
+
+
+body{
+    background-color: bisque;
+}
+#layout{
+    width: 1080px;
+    margin: 5px auto;           
+}
+
+#layout>#header{
+    width: 100%;
+    height: 90px;
+    background-color: thistle;
+
+}
+#layout>#main{
+    width: 100%;
+    min-height: 150px;
+    background-color: antiquewhite;
+}
+#layout>#footer{
+    width: 100%;
+    height: 40px;
+    background-color: burlywood;
+    text-align: center; 
+    padding: 5px;  
+}
+#layout>#footer #copyright *{
+    text-align: center;                
+}
+#layout>#header>div:first-child{
+    height: 60px;
+    padding: 5px;
+}
+#layout>#header>div:first-child h1{
+    font-size: 20px;
+}
+
+#layout>#header #main-menu{
+    width: 100%;
+    height: 30px;
+    background-color: darksalmon;
+    color: white;
+}
+#layout>#header #user-info{
+    text-align: right;
+} 
+#main-menu ul{
+    list-style: none;
+}
+
+.topMenu{
+    list-style-type: none;
+}
+.topMenu>li{
+    display: inline-block;
+    width: 100px;
+
+}
+.topMenu>li ul{
+    display: none;
+    position: absolute;
+    padding: 3px 0;
+}
+.topMenu li{
+    position: relative;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    padding: 5px;
+}
+.topMenu li:hover{
+    background-color: rgba(248, 182, 125, 0.5);
+}
+.topMenu li:hover>ul{
+    display: block;
+    background-color: darksalmon;
+}
+.topMenu>li>ul{
+    left: 0;
+    top:30px;
+}
+
+.topMenu>li>ul ul{
+    left: 100px;
+    top: 0;
+}
