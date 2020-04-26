@@ -7,7 +7,7 @@
 
     <body>
         <h1>注册</h1>
-        <form action="do_register.php" method="POST">
+        <form action="post.php" method="POST">
             <div>
                  用户名:<input type="text" value="lemon" name="Username" placeholder="输入用户名"/>
             </div>

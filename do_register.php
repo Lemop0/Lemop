@@ -22,7 +22,7 @@ function myimplode($arr,$needle){
     $result = ",";
     while($count>0){
         $result = ",".$arr[$count-1].$result;
-        $count-1;
+        $count--;
     }
     return $result;
 }
