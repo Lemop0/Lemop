@@ -7,6 +7,13 @@
     vertical-align: top;
     box-sizing: border-box;
 }
+a{
+   text-decoration: none;
+   /* color: black; */
+}
+.form{
+    margin: 10px 5px;
+}
 .container{
     display: table;
     border: 0;
@@ -57,9 +64,133 @@
     width: 100%;
 }
 
+.loginBox{
+    margin: 20px auto;
+    border: 1px solid sandybrown;
+    padding: 6px;
+    border-radius: 6px;
+    width: 50%;
+    background-color:  rgb(248, 230, 195);
+    min-width: 200px;
+    max-width: 400px;
+}
+.loginBox h1{
+    text-align: center;
+    font-size: 20px;
+    margin: 20px;
+}
+.loginBox .field{
+    width: 100%;
+    margin: 6px;
+    position: relative;
+}
+.loginBox .field label{
+    position: absolute;
+    left: 30px;
+    top: 5px;
+
+}
+.loginBox .field input{
+    padding: 3px;
+    border: 1px solid sandybrown;
+    border-radius: 5px;
+    margin-left: 100px;
+    margin-top: 4px;
+}
+.loginBox .actions{
+    text-align:right;
+    margin: 20px;
+}
+.loginBox .actions input{
+    padding: 2px 8px;
+    border: 1px solid sandybrown;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.loginBox .actions input:hover{
+    background-color: sandybrown;
+    color: white;
+}
+
+.dataset{
+    margin: 20px auto;
+    border: 1px solid sandybrown;
+    padding: 6px;
+    border-radius: 6px;
+    width: 80%;
+    background-color: rgb(248, 230, 195);
+    min-width: 300px;
+}
+.dataset h1{
+    text-align: center;
+    font-size: 20px;
+    margin: 20px;
+}
+.dataset .field{
+    width: 100%;
+    padding: 6px;
+    position: relative;
+}
+.dataset .field label{
+    position: absolute;
+    left: 30px;
+    top: 14px;
+}
+.dataset .info{
+    margin-left: 100px;
+}
+.dataset .field input,.dataset .field textarea{
+    padding: 3px;
+    border: 1px solid sandybrown;
+    border-radius: 5px;
+    margin-left: 100px;
+    margin-top: 4px;
+    width: 60%;
+    min-width: 200px;
+    max-width: 800px;
+
+}
+.dataset .field textarea{
+    min-height: 200px;
+    height: 400px;
+}
+.dataset .actions{
+    text-align:right;
+    margin: 20px;
+    padding: 10px 0;
+}
+.dataset .actions input{
+    padding: 2px 8px;
+    border: 1px solid sandybrown;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.dataset .actions a{
+    position: relative;
+    top: 3px;
+    right: 10px;
+    padding: 2px 5px;
+    border: 1px solid sandybrown;
+    border-radius: 10%;
+    background-color:  rgb(239, 239, 239);
+}
+.dataset .actions input:hover,.dataset .actions a:hover{
+    background-color: sandybrown;
+    color: white;
+}
+.dataset .field .aa,.dataset .field .cc{
+    padding: 3px;
+    border-radius: 5px;
+    margin-left: 100px;
+    margin-top: 4px;
+    width: 60%;
+    min-width: 200px;
+    max-width: 800px;
+}
+
 
 body{
-    background-color: bisque;
+    background-color: rgb(233, 202, 191);
 }
 #layout{
     width: 1080px;
@@ -76,6 +207,10 @@ body{
     width: 100%;
     min-height: 150px;
     background-color: antiquewhite;
+}
+#workspace{
+    min-height: 200px;
+    padding: 10px;
 }
 #layout>#footer{
     width: 100%;
@@ -98,7 +233,7 @@ body{
 #layout>#header #main-menu{
     width: 100%;
     height: 30px;
-    background-color: darksalmon;
+    background-color: sandybrown;
     color: white;
 }
 #layout>#header #user-info{
@@ -120,6 +255,7 @@ body{
     display: none;
     position: absolute;
     padding: 3px 0;
+    z-index: 999999;
 }
 .topMenu li{
     position: relative;
@@ -129,18 +265,107 @@ body{
     padding: 5px;
 }
 .topMenu li:hover{
-    background-color: rgba(248, 182, 125, 0.5);
+    background-color: rgb(228, 182, 143);
 }
 .topMenu li:hover>ul{
     display: block;
-    background-color: darksalmon;
+    background-color: sandybrown;
 }
 .topMenu>li>ul{
     left: 0;
     top:30px;
+
 }
 
 .topMenu>li>ul ul{
     left: 100px;
     top: 0;
+}
+.btn{
+    cursor: pointer;
+    padding:5px;
+}
+
+.list .table{
+    display: table;
+    width:100% ;
+    line-height: 2;
+}
+.list .table .thead{
+    display: table-header-group;
+    width:100% ;
+}
+.list .table .tbody{
+    display: table-row-group;
+    width:100% ;
+}
+.list .table .thead .th{
+    background-color: darkseagreen;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    width: 200px;
+}
+.list .table .tr{
+    display: table-row;
+}
+.list .table .tr:hover{
+    background-color: rgba(255, 255, 255, 0.733);
+}
+.list .table .th{
+    display: table-cell;
+}
+.list .table .td{
+    display: table-cell;
+    border-bottom: 1px dashed darkkhaki;
+    padding: 0 10px;
+    width: 200px;
+
+}
+
+
+.card .table{
+    display: block;
+    width:100% ;
+    line-height: 2;
+}
+.card .table .thead{
+    display: none;
+}
+
+.card .table .tr{
+    float: left;
+    width: 200px;
+    border: 1px solid rgb(209, 188, 163);
+    background-color: rgb(255, 234, 210);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5px;
+}
+.card .table .tr .Title{
+    background-color: darkseagreen;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+
+}
+.card .table .tr .td{
+    border-bottom: 1px dashed darkkhaki;
+    text-align:center;
+
+}
+.card .table .tr:hover{
+    background-color: rgba(255, 255, 255, 0.733);
+}
+.card #recordInfo{
+    clear: both;
+}
+
+/* ======================== */
+
+.dataset .actions{
+    border-top: 1px solid burlywood;
+}
+.dataset .title{
+    border-bottom: 1px dashed burlywood;
 }

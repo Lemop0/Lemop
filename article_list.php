@@ -1,19 +1,19 @@
 <?php
-session_start();
-$user = isset($_SESSION["user"])?$_SESSION["user"]:null;
-$userId = $user?$user["id"]:null;
+require_once("common.inc.php");
 
-function getParam($name){
-    $value = isset($_GET[$name])?$_GET[$name]:null;
-    $value = str_replace("'","''",$value);
-    return $value;
-}
+//卡片和列表切换
+// $theme = isset($_GET["theme"])?$_GET["theme"]:null;
+// if(!$theme){
+//     $theme = isset($_COOKIE["theme"])?$_COOKIE["theme"]:null;
+// }else{
+//     setcookie("theme",$theme);
+// }
 
-$pageSize = 3;
+
+$conn = createDb();
+$pageSize = 5;
 $pageIndex = isset($_GET["pageIndex"])?trim($_GET["pageIndex"]):1;
-$starRow = ($pageIndex-1) * $pageSize;
 
-$sql="select * from `article`" ;
 $where = "";
 
 $queryTitle = getParam("Title");
@@ -41,208 +41,106 @@ if($queryMaxDate){
     $where .= " CreateTime <= '$queryMaxDate' ";
 }
 
-if($where) 
-    $sql .= " WHERE $where ";
+$pageInfo = pageable("article",$where,$pageIndex,$pageSize);
+$rows = $pageInfo["items"];
+var_dump($rows);
+$pageCount = $pageInfo["pageCount"];
+$total = $pageInfo["total"];
 
-$conn = new mysqli("localhost","root","root","php");
-$rows = [];
-$sql .= " LIMIT $starRow,$pageSize ";
-$rs = $conn->query($sql);
-while($row = $rs->fetch_assoc()){
-    $rows[]=$row;
-}
-$rs->close();
-
-$total = 0;
-$sql = " SELECT count(Id) as t FROM `article` ";
-if($where) 
-    $sql .= " WHERE $where ";
-$rs = $conn->query($sql);
-$total = $rs->fetch_assoc()["t"];
-
-$pageCount = ceil($total/$pageSize);
-if($pageCount<$pageIndex) $pageIndex = $pageCount;
-if($pageIndex<1) $pageIndex = 1;
-
-function pageURL($pageIndex){
-    $pageString = "pageIndex=$pageIndex";
-    foreach ($_GET as $k => $v) {
-        if($k==="pageIndex") continue;
-        $pageString .="&$k=$v";
-    }
-    return $pageString;
-}
+require_once("header.inc.php");
 ?>
-<!doctype html>
-<html>
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-        <title>文章列表</title>
-        <link type="text/css" rel="stylesheet" href="themes/default.css">
-        <style>
-            *{
-                font-size:14px; 
-                padding: 0;
-                margin: 0;
-            }
-            a{
-                list-style: none; 
-                text-decoration: none;
-            }
-            table{ 
-                width: 100%; 
-                align-content: center; 
-                background: #fee;
-                border-collapse:collapse;
-                border:1px solid #000;
-            }
-            table td,table th{
-                padding: 5px;
-                text-align: center;
-                border-collapse: collapse;
-                border:1px solid #ccc;
-            }
-            table th{ 
-                background:cadetblue;
-            }
-            .filter{
-                margin:10px 0px;
-            }
-
-        </style>
-    </head>
-    <body>
-    <div id="layout">
-            <div id="header">
-                <div class="container">
-                    <h1 class="col-10">我的博客系统</h1>
-                    <div id="user-info" class="col-2"> 
-                        <span id="user-name">
-                        <?php if($user){ ?>
-                                <?=$user["username"]?>
-                                <a href="logout.php">退出</a>
-                            <?php } else{ ?>                
-                                <a href="login.html">请先登陆</a>       
-                        <?php } ?>
-                        </span>
-                    </div>
-                </div>
-                <div id="main-menu">
-                    <ul class="topMenu">
-                        <li>首页</li>
-                        <li>文章</li>
-                        <li id="manage">
-                            <span>管理</span>
-                            <ul>
-                                <li><span>用户</span></li>
-                                <li>
-                                    <span>基础数据</span>
-                                    <ul>
-                                        <li>皮肤管理</li>
-                                        <li>兴趣管理</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div id="main">
-                <div id="workspace"></div>
-                <div id="extras"></div>
-            </div>
-            <div id="footer">
-                <div id="quick-access"></div>
-                <div id="copyright">
-                    <p>Amber@qq.com All right reserved.</p>
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <?php if($user){ ?>
-        <div> 
-            <?=$user["username"]?>
-            <a href="logout.php">退出</a>
-        <?php } else{ ?>                
-            <a href="login.html">请先登陆</a>    
-        </div>
-        <?php } ?>
         <h3>文章列表</h3>
         <a href="article_add.php"" >新建文章</a>
-        <form action="" class="filter" method="GET">
-            <span>
-                <label>标题</label>
-                <input type="text" name="Title" id="Title" value="<?=$queryTitle?>"/>
-            </span>
-            <span>
-                <label>作者</label>
-                <input type="text" name="Author" id="Author" value="<?=$queryAuthor?>"/>
-            </span>
-            <span>
-                <label>时间</label>
-                <input type="text" name="minDate" value="<?=$queryMinDate?>"> - <input type="text" name="maxDate" value="<?=$queryMaxDate?>">
-            </span>
-            <input type="submit" name="Submit" value="搜索" />
-        </form>
+                <div  class="form">
+                    <form action="" class="filter" method="GET">
+                        <span>
+                            <label>标题</label>
+                            <input type="text" name="Title" id="Title" value="<?=$queryTitle?>"/>
+                        </span>
+                        <span>
+                            <label>作者</label>
+                            <input type="text" name="Author" id="Author" value="<?=$queryAuthor?>"/>
+                        </span>
+                        <span>
+                            <label>时间</label>
+                            <input type="text" name="minDate" value="<?=$queryMinDate?>"> - <input type="text" name="maxDate" value="<?=$queryMaxDate?>">
+                        </span>
+                        <input type="submit" name="Submit" value="搜索" class="submit"/>
+                    </form>
+                </div>
 
-    <script type="text/javascript">
-    function jumpTo(pageIndex){
-        var url ="?";
-        var form = document.getElementById("form");
-        var data = getData(form,{});
-        for (var n in data){
-            url += "&" + n +"=" + data[n];
-        }
-        url += "&pageIndex=" + pageIndex;
-        location.href = url;
-    }
-    function getData(form,data){
-        for( let i=0 ,j=form.childNodes.length; i<j;i++){
-            let child = form.childNodes[i];
-            if(child.tagName == "INPUT")    data[child.name] = child.value;
-            if(child.childNodes && child.childNodes.length) getData(child,data);
-        }
-        return data;
-    }
-    </script>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>标题</th>
-                    <th>作者</th>
-                    <th>创建时间</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($rows as $row){?>
-                <tr>
-                    <td>
-                    <a href="article_detail.php?Id=<?=$row["Id"]?>"><?=$row["Title"]?></a>
-                    </td>
-                    <td>
-                        <?=$row["AuthorName"]?>
-                    </td>
-                    <td>
-                        <?=$row["CreateTime"]?><br/>
-                        <?=$row["UpdateTime"]?>
-                    </td>
-                    <td>
-                        <a href="article_detail.php?Id=<?=$row["Id"]?>">详情</a>
-                        <?php if($userId===$row["AuthorId"]) { ?>
-                            <a href="article_modify.php?Id=<?=$row["Id"]?>">修改</a>
-                            删除 
-                        <?php } ?>
-                    </td>
-                </tr>
-                <?php } ?>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4">
+                <span class="btn" id="listBtn">列表</span>
+                <span class="btn" id="cardBtn">卡片</span>
+                    <div id="panel" class="list">           
+                        <div class="table">
+                            <div class="thead">
+                                <div class="tr">
+                                    <div class="th"><span class="title">标题</span></div>
+                                    <div class="th">作者</div>
+                                    <div class="th">创建时间</div>
+                                    <div class="th">操作</div>
+                                </div>
+                            </div>
+                            <div class="tbody" >
+                                <?php foreach($rows as $row){?>
+                                <div class="tr">
+                                    <div class="td Title">
+                                    <a href="article_detail.php?Id=<?=$row["Id"]?>"><?=$row["Title"]?></a>
+                                    </div>
+                                    <div class="td Author">
+                                        <?php if($row["hasFace"]){ ?>
+                                            <img class="user-face" src="<?="/liushan/images/".$row["AuthorId"].".jpg"?>" />
+                                        <?php }else{?>
+                                            <img class="user-face" src="<?="/liushan/images/default.jpg"?>" />
+                                        <?php } ?>
+                                        <?=$row["AuthorName"]?>
+                                    </div>
+                                    <div class="td">
+                                        <?=$row["CreateTime"]?><br>
+                                        <?=$row["UpdateTime"]?>
+                                    </div>
+                                    <div class="td">
+                                        <a href="article_detail.php?Id=<?=$row["Id"]?>">详情</a>
+                                        <?php if($userId===$row["AuthorId"]) { ?>
+                                            <a href="article_modify.php?Id=<?=$row["Id"]?>">修改</a>
+                                            <a href="article_delete.php?Id=<?=$row["Id"]?>" class="delete">删除</a>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                            </div>
+                            <script type="text/javascript">
+                                listBtn.onclick = function(){
+                                    var span = document.getElementById("panel");
+                                    span.className = "list";
+                                };
+                                cardBtn.onclick = function(){
+                                    var span = document.getElementById("panel");
+                                    span.className = "card";
+                                }; 
+
+                                function jumpTo(pageIndex){
+                                    var url ="?";
+                                    var form = document.getElementById("form");
+                                    var data = getData(form,{});
+                                    for (var n in data){
+                                        url += "&" + n +"=" + data[n];
+                                    }
+                                    url += "&pageIndex=" + pageIndex;
+                                    location.href = url;
+                                }
+                                function getData(form,data){
+                                    for( let i=0 ,j=form.childNodes.length; i<j;i++){
+                                        let child = form.childNodes[i];
+                                        if(child.tagName == "INPUT")    data[child.name] = child.value;
+                                        if(child.childNodes && child.childNodes.length) getData(child,data);
+                                    }
+                                    return data;
+                                }
+                                </script>
+                        </div>
+                    </div>
+                    <div id="recordInfo"> 
                         共<?=$total?>条记录，<?=$pageCount?>页，当前第<input type="text" value="<?=$pageIndex?>" onblur="jumpTo(this.value)"/>页，
                         <a href="article_list.php?<?=pageURL(1)?>">首页</a>< 
                             <?php for($i=1 ; $i<=$pageCount ; $i++){?>
@@ -250,10 +148,19 @@ function pageURL($pageIndex){
                             <?php } ?>
                         > 
                         <a href="article_list.php?<?=pageURL($pageCount)?>">尾页</a>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-    </body>
-
-</html>
+                    </div>
+                <script type="text/javascript">
+                var deleteLinks = document.getElementsByClassName("delete");
+                for(var i=0,j=deleteLinks.length;i<j;i++){
+                    var link = deleteLinks[i];
+                    link.onclick = function(e){
+                        e = e || event;
+                        var confirmd = confirm("你确定要删除吗？");
+                        if(!confirmd){
+                            e.preventDefault();
+                            return false;
+                        }
+                    }
+                }
+                </script>
+<?php require_once("footer.inc.php");?>

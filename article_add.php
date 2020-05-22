@@ -27,7 +27,7 @@ if(!$user){
             <div>
                 <label>作者</label>
                 <span>
-                    <?=$user["username"]?>
+                    <?=$user["Username"]?>
                 </span>
             </div>
 

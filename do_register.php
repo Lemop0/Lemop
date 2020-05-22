@@ -95,7 +95,7 @@ $intro = $_POST["introduce"];
 
 
 if(!$hasError){
-    $sql = "insert into `Account` (`Username`,`Password`,`Gender`,`age`,`introduce`) values ('$username','$password',1,'$age','$interestValue','$intro')";
+    $sql = "insert into `account` (`Username`,`Password`,`Gender`,``interest`,age`,`introduce`) values ('$username','$password',1,'$age','$interestValue','$intro')";
     $conn = new mysqli('localhost','root','','myblog');
     $conn->query($sql);
     if($conn->error) echo"数据库有错误:$conn->error";

@@ -1,0 +1,17 @@
+    //1. javascript语言本身与javascript宿主环境提供的API. //v8 engine.
+    //嵌入到浏览器环境
+    // node.js
+    //2. DOM.
+    // 2.1 window alert/confirm
+    // 2.2 document
+    // 2.2.1 document.body
+
+    //3.1 找到元素firstChild , children , parent
+document.body.firstElementChild.style.border="3px dashed red"; 
+    //document.body.childNodes/firstChild
+document.body.children[0].style.border="2px dashed blue";
+
+    //3.2 getElement
+var list=document.getElementById("list");
+var spans=list.getElementsByTagName("span");
+var cardBtn = spans[1];

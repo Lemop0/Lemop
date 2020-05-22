@@ -10,13 +10,13 @@ if(!$user){
     $createTime=(new Datetime())->format('Y-m-d H:i:s');
     $updateTime=$createTime;
     $authorId=$user["id"];
-    $authorName=$user["username"];
+    $authorName=$user["Username"];
 
-    $sql = "INSERT INTO `article`(`Title`,`Content`,`CreateTime`,`UpdateTime`,`AuthorId`,`AuthorName`) VALUES ('$title','$content','$createTime','$updateTime','$authorId','$authorName')";
+    $sql = "INSERT INTO `Article`(`Title`,`Content`,`CreateTime`,`UpdateTime`,`AuthorId`,`AuthorName`) VALUES ('$title','$content','$createTime','$updateTime','$authorId','$authorName')";
     echo $sql;
-    $conn = new mysqli("localhost","root","root","php");
+    $conn = new mysqli("localhost","root","","myblog");
     $conn->query($sql);
-    if($conn->error)  die($conn->error) ;
+    if($conn->error)  die($conn->error);
     else echo "添加文章成功！" ;
 }
 ?>

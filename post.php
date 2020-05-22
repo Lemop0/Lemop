@@ -40,8 +40,8 @@
         if($len<3){
             echo "用户名至少3个字符<br / >";
             $count++;
-        }else if($len>5){
-            echo "用户名最多5个字符<br/>";
+        }else if($len>8){
+            echo "用户名最多8个字符<br/>";
             $count++;
         }else if(!preg_match('/^[a-zA-Z0-9_]*$/',$username)){
             echo "格式不符合要求<br/>";
@@ -55,11 +55,11 @@
         echo "密码必须填写<br />";
         $count++;
     }else{
-        $len = strlen($username);
-        if($len<3){
-            echo "密码至少5个字符<br / >";
+        $len = strlen($pswd);
+        if($len<4){
+            echo "密码至少4个字符<br / >";
             $count++;
-        }else if($len>5){
+        }else if($len>8){
             echo "密码最多8个字符<br/>";
             $count++;
         }
@@ -83,7 +83,7 @@
     }
 
     //兴趣
-    $ins = $_POST["interest"];
+    $ins = $_POST["Interests"];
 
     $length = array_length($ins);
 
@@ -91,29 +91,29 @@
         echo"兴趣必须是多选<br/>";
         $count++;
     }
-    $interest = array_implode($ins,"");
+    $interests = array_implode($ins,"");
 
-    //$province = $_POST["Province"];
-    $intro = $_POST["introduce"];
+    $province = $_POST["Province"];
+    $intro = $_POST["Intro"];
 
      if($count===0){
          $intro = str_replace("'","''",$intro);
-        $conn = new mysqli("localhost", "root", "", "myblog");
+        $conn = new mysqli("localhost", "root", "root", "php");
         if ($conn->connect_error) 
             die("连接失败: " . $conn->connect_error);
 
-        $sql = "insert into `Account` (`Username`,`Password`,`Gender`,`age`,`introduce`) values ('$username','$password',1,'$age','$interestValue','$intro')";
+        $sql = "INSERT INTO account (username,password,age,gender,interests,province,intro) VALUES ('$username','$pswd','$age','$gender','$interests','$province','$intro')";
         echo $sql."<br/>";  
 
         $conn ->query($sql);
         if($sql){
-            echo "注册成功！";     
+            echo "注册成功！";  
+            Header("Location: register.php"); 
         }else{
            echo "注册失败！";
         }
      }
 
-    echo "<a href='base_complexForm.html'>返回</a><hr/>";
 
     // foreach($_POST as $index => $value){
     //     echo "<br/>";
@@ -130,3 +130,4 @@
 4.php引擎加载php文件的内容，把http数据放到$_ POST,$_ GET等超全局变量中
 5.开始执行代码
 */
+?>

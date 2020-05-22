@@ -1,0 +1,45 @@
+1 资源保护与用户登录
+    1 被保护的页面：读取session的某个值，如果有，就认为已经登录，没有就没有登录
+    2 login的时候，如果密码判定成功，就往session里面写一个特定的值
+    3 session 可以跨页面使用
+
+2 session的粗糙理解： 发了一张带时间的票（为了不每次都买票，动物园给你发了一张年票）
+    A 有一张票，是服务器（动物园园方）发的
+    B 这张票是谁拿着的？ 浏览器保存着（）
+    C 访问受保护的页面的时候，服务器会检查票据 --票的信息是由浏览器告诉服务器的
+
+3 为什么登录会是个问题  http协议的无状态特点
+tcp 有状态 链接
+http/https web
+
+4 cookie原理
+session_start（）；
+服务器如果发现你没带票，就会给浏览器一张票set-cookie   
+下次访问，浏览器就会带着这个票cookie接头
+$_COOKIE[]
+
+5 cookie的不足
+可以伪造请求，如果只用cookie作为验证手段，可以通过伪造请求，欺骗服务器
+
+6 session的粗糙理解：
+session_start  服务器给浏览器一张票 PHPSESSION=(NO);
+login成功的时候 再服务器上的某个地方创建了一个小本子，记录了与这张票对应的文件，文件的内容就是我们$_SESSION["user"]=user;
+changePassword -> 浏览器递给服务器一张票COOKIE = PHPSESSION= , 服务器把票对应的小本子翻出来，
+
+服务器只处理请求，但它不知道这个请求是浏览器发的还是工具发的还是
+
+7 登录后用户信息怎么存放？
+---session_start();
+---do_login.php.$_SESSION["user"]=$row;
+---article_detail.php .$current.=.$_SESSION["user"];
+---article_insert.php
+
+8 动物园的检票问题  /http协议的无状态
+
+9 cookie. session_start(); //给了每个进院子的一张票
+因为票可以伪造
+
+10 工作区 修改文件 修改工作区的文件
+   暂存区 copy了工作区的文件到.git里面的某个地方
+   本地库。提交到本地库。
+   推送到远程库。 -pull远程的库拉下来跟本地的库合并，然后push，本地的库上传远程，与远程的库合并
