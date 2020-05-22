@@ -135,6 +135,7 @@ a{
     position: absolute;
     left: 30px;
     top: 14px;
+    font-weight: bold;
 }
 .dataset .info{
     margin-left: 100px;
@@ -150,6 +151,23 @@ a{
     max-width: 800px;
 
 }
+.dataset .field select{
+    padding: 3px;
+    border: 1px solid sandybrown;
+    border-radius: 5px;
+    margin-left: 100px;
+    margin-top: 4px;
+    width: 100px;
+}
+
+.dataset .sex input,.dataset .ins input{
+    width: 20px;
+    margin-left: 100px;
+    padding: 3px;
+    min-width: 20px;
+    max-width: 20px;
+}
+
 .dataset .field textarea{
     min-height: 200px;
     height: 400px;
@@ -318,7 +336,7 @@ body{
 .list .table .td{
     display: table-cell;
     border-bottom: 1px dashed darkkhaki;
-    padding: 0 10px;
+    padding: 5px 10px;
     width: 200px;
 
 }
@@ -346,13 +364,12 @@ body{
     background-color: darkseagreen;
     color: white;
     font-weight: bold;
-    padding: 5px 10px;
-
+    text-align: center;
 }
 .card .table .tr .td{
     border-bottom: 1px dashed darkkhaki;
     text-align:center;
-
+    padding: 10px 0;
 }
 .card .table .tr:hover{
     background-color: rgba(255, 255, 255, 0.733);
@@ -368,4 +385,55 @@ body{
 }
 .dataset .title{
     border-bottom: 1px dashed burlywood;
+}
+
+.replyBox{
+    display: block;
+}
+.replyBox>div{
+    display: inline;
+}
+.replyBox>div .replier{
+    font-weight: bold;
+}
+.replyBox>div .replier::after{
+    content: ":";
+}
+.replyBox>div .replyTime{
+    font-style: italic;
+}
+
+.replies{
+    background-color:rgba(255, 255, 255, 0.404);
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.418);
+    border-radius: 10px;
+}
+.replies .caption{
+    font-weight: bold;
+}
+.replyEditor textarea{
+    width: 50%;
+    min-width: 150px;
+    max-width: 500px;
+    height: 100px;
+    border: 1px solid sandybrown;
+    border-radius: 5px;
+    padding: 5px;
+}
+.replyEditor input[type="submit"]{
+    background-color:rgb(239, 239, 239);
+    border: 1px solid sandybrown;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.replyEditor input[type="submit"]:hover{
+    background-color: sandybrown;
+    color: white;
+}
+
+
+.Author .user-face{
+    width: 20px;
+    height: 20px;
 }
