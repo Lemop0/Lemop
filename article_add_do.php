@@ -9,10 +9,10 @@ if(!$user){
     $content=$_POST["Content"];
     $createTime=(new Datetime())->format('Y-m-d H:i:s');
     $updateTime=$createTime;
-    $authorId=$user["id"];
+    $authorId=$user["Id"];
     $authorName=$user["Username"];
 
-    $sql = "INSERT INTO `Article`(`Title`,`Content`,`CreateTime`,`UpdateTime`,`AuthorId`,`AuthorName`) VALUES ('$title','$content','$createTime','$updateTime','$authorId','$authorName')";
+    $sql = "INSERT INTO `Article`(`Title`,`Content`,`Create Time`,`Update Time`,`AuthorId`,`AuthorName`) VALUES ('$title','$content','$createTime','$updateTime','$authorId','$authorName')";
     echo $sql;
     $conn = new mysqli("localhost","root","","myblog");
     $conn->query($sql);

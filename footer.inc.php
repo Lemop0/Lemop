@@ -28,7 +28,7 @@
             <div id="footer">
                 <div id="quick-access"></div>
                 <div id="copyright">
-                    <p>Amber@qq.com All right reserved.</p>
+                    <p>Lemop@qq.com All right reserved.</p>
                 </div>
             </div>
         </div>

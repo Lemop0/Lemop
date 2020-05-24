@@ -126,7 +126,7 @@
         <form method="POST" action="" enctype="multipart/form-data"> 
             <div class="field">
                 <label>名称：</label>
-                <input type="text" name="Username" value="amber" placeholder="请输入"/>
+                <input type="text" name="Username" value="" placeholder="请输入"/>
             </div>
             <div class="field">
                 <label>头像：</label>
@@ -166,8 +166,8 @@
 
             <div class="field">
                 <label>自我介绍：</label>
-                <textarea name="Intro" cols="80" rows="10">我叫Amber
-                    我现在在四川
+                <textarea name="Intro" cols="80" rows="10">
+                    
                 </textarea>
             </div>
             <div class="actions">

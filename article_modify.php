@@ -7,12 +7,12 @@ if($requestMethod=="GET"){
     //GET方法   link
 
     $id = getParam("Id");
-    $sql = "SELECT * from `article` where Id=$id";
+    $sql = "SELECT * from `Article` where Id=$id";
     $conn = new mysqli("localhost","root","","myblog");
     $rs = $conn -> query($sql);
     if ($conn->error) die($conn->error);
     $detail = $rs->fetch_assoc();
-    if($user["id"]!==$detail["AuthorId"]){
+    if($user["Id"]!==$detail["AuthorId"]){
         die("不是作者，不可以修改！");
     }
 
@@ -25,7 +25,8 @@ if($requestMethod=="GET"){
     $updateTime = date_format(new DateTime(),'Y-m-d H:i:s');
     $id = getParam("id");
 
-    $sql = "UPDATE `article` SET `Title`='$title',`Content`='$content',`UpdateTime`='$updateTime' WHERE Id=$id AND AuthorId=".$user["id"];
+    $sql = "UPDATE `article` SET `Title`='$title',`Content`='$content',`UpdateTime`='$updateTime' WHERE Id=$id AND AuthorId=".$user["Id"];
+    echo $sql;
     $conn = new mysqli("localhost","root","","myblog");
     $rs = $conn -> query($sql);
     if ($conn->error) die($conn->error);

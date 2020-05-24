@@ -14,7 +14,7 @@
                     <h1 class="col-9">我的博客系统</h1>
                     <div id="user-info" class="col-3"> 
                         <?php if($user){ ?>
-                            <span id="user-name"><?=$user["username"]?></span>
+                            <span id="user-name"><?=$user["Username"]?></span>
                             <a href="logout.php">退出</a>
                             <?php } else{ ?>     
                                 <span id="user-name">访客</span>           

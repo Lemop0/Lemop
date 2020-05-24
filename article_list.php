@@ -88,11 +88,7 @@ require_once("header.inc.php");
                                     <a href="article_detail.php?Id=<?=$row["Id"]?>"><?=$row["Title"]?></a>
                                     </div>
                                     <div class="td Author">
-                                        <?php if($row["hasFace"]){ ?>
-                                            <img class="user-face" src="<?="/liushan/images/".$row["AuthorId"].".jpg"?>" />
-                                        <?php }else{?>
-                                            <img class="user-face" src="<?="/liushan/images/default.jpg"?>" />
-                                        <?php } ?>
+                                        <img class="user-face" src="<?="/Lemop/images/".$row["AuthorId"].".jpg"?>" />
                                         <?=$row["AuthorName"]?>
                                     </div>
                                     <div class="td">

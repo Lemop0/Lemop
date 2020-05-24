@@ -2,11 +2,11 @@
 session_start();
 //当前用户
 $user = isset($_SESSION["user"])?$_SESSION["user"]:null;
-$userId = $user?$user["id"]:null;
+$userId = $user?$user["Id"]:null;
 
 //数据库
 function createDb(){
-    $conn = new mysqli("localhost","root","root","php");
+    $conn = new mysqli("localhost","root","","myblog");
     return $conn;
 }
 

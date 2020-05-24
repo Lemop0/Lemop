@@ -10,7 +10,7 @@ function writeHtmlContent($content){
 $conn = createDb();
 
 $id = $_GET["Id"];
-$sql = "SELECT * from `article` where Id=$id";
+$sql = "SELECT * from `Article` where Id = $id";
 $rs = $conn->query($sql);
 if ($conn->error) die($conn->error);
 $detail = $rs->fetch_assoc();
@@ -29,9 +29,9 @@ if(isset($_POST["doReply"])){
     $content = $_POST["replyContent"];
     if(trim($content)===""){ $isReplyOk = false;$errorMsg ="请填写内容"; }
     $createTime = date_format(new DateTime(),'Y-m-d H:i:s');
-    $authorId = $user["id"];
+    $authorId = $user["Id"];
     //z这里要做个判断，是否允许游客访问
-    $authorName = $user["username"];
+    $authorName = $user["Username"];
     $articleId = $id;
     if($isReplyOk){
         $sql = "INSERT INTO `reply` values('','$content','$createTime','$authorId','$authorName','$articleId')";
@@ -74,9 +74,9 @@ require_once("header.inc.php");
                 <div class="existedReplies">
                     <?php foreach($replies as $row){ ?>
                     <div class="replyBox">
-                        <div class="replier"><?=$row["AuthorName"]?></div>
-                        <div class="replyContent"><?=writeHtmlContent($row["Content"])?></div>
-                        <div class="replyTime"><?=$row["CreateTime"]?></div>
+                        <div class="replier"><?=$row["authorName"]?></div>
+                        <div class="replyContent"><?=writeHtmlContent($row["content"])?></div>
+                        <div class="replyTime"><?=$row["createTime"]?></div>
                     </div>
                     <?php } ?>
                     <div><?=$pageCount?>页, <?=$recordCount?>条回复< 
